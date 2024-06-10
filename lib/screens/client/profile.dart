@@ -1,6 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image/image.dart' as img;
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+
+import '../../widgets/bottomnavbar.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -10,6 +16,102 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  MemoryImage? currentAvatar;
+
+  installProfile() async {
+    final Directory appCacheDir = await getTemporaryDirectory();
+    File fileSave = File("${appCacheDir.path}/avatar.jpg");
+
+    if (fileSave.existsSync()) {
+      final imageBytes = await fileSave.readAsBytes();
+      setState(() {
+        currentAvatar = MemoryImage(imageBytes);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    installProfile();
+  }
+
+  ppUpdate() async {
+    try {
+      ImagePicker picker = ImagePicker();
+      XFile? photoFile = await picker.pickImage(
+          source: ImageSource.gallery, requestFullMetadata: false);
+      if (photoFile == null) {
+        return;
+      }
+
+      final fileBytes = await photoFile.readAsBytes();
+      final fileFormat = photoFile.name.split(".").last.toLowerCase();
+
+      img.Image? temp;
+      switch (fileFormat) {
+        case 'jpg':
+        case 'jpeg':
+          temp = img.decodeJpg(fileBytes);
+          break;
+        case 'png':
+          temp = img.decodePng(fileBytes);
+          break;
+        case 'bmp':
+          temp = img.decodeBmp(fileBytes);
+          break;
+        case 'tiff':
+          temp = img.decodeTiff(fileBytes);
+          break;
+        case 'gif':
+          temp = img.decodeGif(fileBytes);
+          break;
+        case 'ico':
+          temp = img.decodeIco(fileBytes);
+          break;
+        default:
+          showDialog(
+            context: context,
+            builder: (context) => const AlertDialog(
+              title: Text("File Type"),
+              content: Text("File format not supported"),
+            ),
+          );
+          return;
+      }
+
+      if (temp == null || temp.width < 480 || temp.height < 480) {
+        showDialog(
+          context: context,
+          builder: (context) => const AlertDialog(
+            title: Text("File Size"),
+            content: Text("File size is too small (min 480px)"),
+          ),
+        );
+        return;
+      }
+
+      img.Image thumbnail;
+      if (temp.width >= temp.height) {
+        thumbnail = img.copyResize(temp, height: 480);
+      } else {
+        thumbnail = img.copyResize(temp, width: 480);
+      }
+
+      final resizedFileData = img.encodeJpg(thumbnail, quality: 85);
+      final Directory tempDir = await getTemporaryDirectory();
+
+      File newFile = File("${tempDir.path}/avatar.jpg");
+      await newFile.writeAsBytes(resizedFileData, flush: true);
+
+      setState(() {
+        currentAvatar = MemoryImage(resizedFileData);
+      });
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,11 +129,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      "https://png.pngtree.com/png-vector/20191103/ourmid/pngtree-handsome-young-guy-avatar-cartoon-style-png-image_1947775.jpg",
-                    ),
+                    backgroundImage: currentAvatar,
                     radius: 40,
                   ),
+                ),
+                OutlinedButton(
+                  onPressed: ppUpdate,
+                  child: const Text("Change Profile Photo"),
                 ),
                 Text(
                   "Carla Willis",
@@ -78,7 +182,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Text(
                             ">",
                             style: TextStyle(
-                                color: Color.fromRGBO(128, 128, 128, 1)),
+                              color: Color.fromRGBO(128, 128, 128, 1),
+                            ),
                           ),
                         ],
                       ),
@@ -100,7 +205,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Text(
                             ">",
                             style: TextStyle(
-                                color: Color.fromRGBO(128, 128, 128, 1)),
+                              color: Color.fromRGBO(128, 128, 128, 1),
+                            ),
                           ),
                         ],
                       ),
@@ -122,7 +228,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Text(
                             ">",
                             style: TextStyle(
-                                color: Color.fromRGBO(128, 128, 128, 1)),
+                              color: Color.fromRGBO(128, 128, 128, 1),
+                            ),
                           ),
                         ],
                       ),
@@ -183,60 +290,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 20),
-        child: Container(
-          height: 70,
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: IconButton(
-                  onPressed: () => GoRouter.of(context).push("/products"),
-                  icon: Icon(Icons.home,
-                      color: const Color.fromRGBO(174, 174, 178, 1)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: IconButton(
-                  onPressed: () => GoRouter.of(context).push("/favorites"),
-                  icon: Icon(Icons.favorite,
-                      color: const Color.fromRGBO(174, 174, 178, 1)),
-                ),
-              ),
-              IconButton(
-                onPressed: () => GoRouter.of(context).push("/card"),
-                icon: CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 255, 115, 102),
-                  child: Icon(
-                    Icons.shopping_bag,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: IconButton(
-                  onPressed: () => GoRouter.of(context).push("/notifications"),
-                  icon: Icon(Icons.notifications,
-                      color: const Color.fromRGBO(174, 174, 178, 1)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: IconButton(
-                  onPressed: () => GoRouter.of(context).push("/profile"),
-                  icon: Icon(Icons.person,
-                      color: const Color.fromRGBO(255, 115, 102, 1)),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: const BNB(),
     );
   }
 }

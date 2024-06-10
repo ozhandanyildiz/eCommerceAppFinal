@@ -19,19 +19,19 @@ class _BoardingScreenState extends State<BoardingScreen> {
       "image": "assets/images/boarding1.png",
       "title": "Explore Products",
       "description":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sapien nisl, ultricies efficitur placerat vel, sollicitudin quis mi. Nulla cursus est nibh, sed interdum enim semper vel.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sapien nisl, ultricies efficitur placerat vel, sollicitudin quis mi.",
     },
     {
       "image": "assets/images/boarding2.png",
       "title": "Easy Payment",
       "description":
-          "Morbi quis ante libero. Fusce pharetra urna sed eros ultricies luctus. Fusce pharetra luctus condimentum. Nam arcu purus, auctor sit amet nunc in, condimentum scelerisque mi. Integer et nibh vitae ligula accumsan rutrum.",
+          "Morbi quis ante libero. Fusce pharetra urna sed eros ultricies luctus. Fusce pharetra luctus condimentum.",
     },
     {
       "image": "assets/images/boarding3.png",
       "title": "Fast Delivery",
       "description":
-          "Mauris eu auctor dui, eget sagittis neque. Phasellus maximus faucibus neque, in tristique ipsum tempus a. Ut tellus justo, interdum nec posuere et, dapibus nec odio. Sed blandit turpis a dui fermentum, in pharetra mi rhoncus.",
+          "Mauris eu auctor dui, eget sagittis neque. Phasellus maximus faucibus neque, in tristique ipsum tempus a.",
     },
   ];
   int page = 0;

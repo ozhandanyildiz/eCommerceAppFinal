@@ -17,24 +17,22 @@ class BoardingItems extends StatelessWidget {
     return SizedBox.expand(
       child: Padding(
         padding: const EdgeInsets.all(30.0),
-        child: Column(
-            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: Column(children: [
+          Container(width: 500, height: 350, child: Image.asset(image)),
+          Column(
             children: [
-              Container(width: 500, height: 350, child: Image.asset(image)),
-              Column(
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                  ),
-                  Gap(10),
-                  Text(
-                    description,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              )
-            ]),
+              Text(
+                title,
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+              Gap(10),
+              Text(
+                description,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          )
+        ]),
       ),
     );
   }

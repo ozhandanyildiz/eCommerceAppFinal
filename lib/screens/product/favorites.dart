@@ -4,6 +4,8 @@ import 'package:flutter_advanced_dev/bloc/products/products_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../widgets/bottomnavbar.dart';
+
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
 
@@ -167,9 +169,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           ElevatedButton(
-                                            onPressed: () =>
-                                                GoRouter.of(context)
-                                                    .push("/card"),
+                                            onPressed: () {
+                                              GoRouter.of(context)
+                                                  .push("/card");
+                                              Navigator.of(context)
+                                                  .pop(); // Diyalog kapatılıyor
+                                            },
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor: Color.fromARGB(
                                                   255, 255, 115, 102),
@@ -186,7 +191,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                           ),
                                           ElevatedButton(
                                             onPressed: () =>
-                                                GoRouter.of(context).pop(),
+                                                Navigator.of(context).pop(),
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor: Color.fromARGB(
                                                   255, 255, 115, 102),
@@ -233,61 +238,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           ),
         );
       }),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 20),
-        child: Container(
-          height: 70,
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: IconButton(
-                  onPressed: () => GoRouter.of(context).push("/products"),
-                  icon: Icon(
-                    Icons.home,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: IconButton(
-                  onPressed: () => GoRouter.of(context).push("/favorites"),
-                  icon: Icon(Icons.favorite,
-                      color: const Color.fromRGBO(255, 115, 102, 1)),
-                ),
-              ),
-              IconButton(
-                onPressed: () => GoRouter.of(context).push("/card"),
-                icon: CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 255, 115, 102),
-                  child: Icon(
-                    Icons.shopping_bag,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: IconButton(
-                  onPressed: () => GoRouter.of(context).push("/notifications"),
-                  icon: Icon(Icons.notifications,
-                      color: const Color.fromRGBO(174, 174, 178, 1)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: IconButton(
-                  onPressed: () => GoRouter.of(context).push("/profile"),
-                  icon: Icon(Icons.person,
-                      color: const Color.fromRGBO(174, 174, 178, 1)),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: const BNB(),
     );
   }
 }
