@@ -49,7 +49,7 @@ class BNB extends StatelessWidget {
                 child: IconButton(
                   onPressed: () => GoRouter.of(context).push("/notifications"),
                   icon: const Icon(Icons.notifications_outlined,
-                      color: const Color.fromRGBO(174, 174, 178, 2)),
+                      color: const Color.fromRGBO(174, 174, 178, 1)),
                 ),
               ),
               Padding(
