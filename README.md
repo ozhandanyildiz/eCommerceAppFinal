@@ -19,5 +19,6 @@
 - SplashScreen(Assets json dan okuyor).
 - Bloc Cubit
 - ShellRoutes
+- Windows ve Apk olarak Build yapıldı.
 
 
