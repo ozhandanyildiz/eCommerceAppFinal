@@ -31,7 +31,7 @@ class BNB extends StatelessWidget {
                 child: IconButton(
                   onPressed: () => GoRouter.of(context).push(("/favorites")),
                   icon: const Icon(Icons.favorite_outlined,
-                      color: const Color.fromRGBO(174, 174, 178, 2)),
+                      color: const Color.fromRGBO(174, 174, 178, 1)),
                 ),
               ),
               IconButton(
