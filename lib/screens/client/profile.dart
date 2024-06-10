@@ -127,16 +127,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 children: [
                   SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CircleAvatar(
-                      backgroundImage: currentAvatar,
-                      radius: 40,
-                    ),
-                  ),
-                  OutlinedButton(
-                    onPressed: ppUpdate,
-                    child: const Text("Change Profile Photo"),
+                  Stack(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: currentAvatar,
+                        radius: 40,
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: IconButton(
+                          onPressed: ppUpdate,
+                          icon: Icon(Icons.camera_alt),
+                          color: Color.fromARGB(255, 255, 115, 102),
+                        ),
+                      ),
+                    ],
                   ),
                   Text(
                     "Carla Willis",

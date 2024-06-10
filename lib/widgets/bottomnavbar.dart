@@ -23,13 +23,13 @@ class BNB extends StatelessWidget {
                 child: IconButton(
                   onPressed: () => GoRouter.of(context).push("/products"),
                   icon: const Icon(Icons.home_outlined,
-                      color: const Color.fromRGBO(255, 115, 102, 1)),
+                      color: const Color.fromRGBO(174, 174, 178, 1)),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: IconButton(
-                  onPressed: () => GoRouter.of(context).push("/favorites"),
+                  onPressed: () => GoRouter.of(context).push(("/favorites")),
                   icon: const Icon(Icons.favorite_outlined,
                       color: const Color.fromRGBO(174, 174, 178, 1)),
                 ),
