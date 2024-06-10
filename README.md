@@ -13,6 +13,7 @@
 ## Özellikler
 - 2 adet dil desteği türkçe ve ingilizce.
 - Gece gündüz modları
+- Sepete ve favorilere ürün ekleyebilme,çıkarabilme ve birbirleri arasında iletişim.
 - Fotoğraf yükleyebilme ve cache yapma.(kapatıp açtığınızda fotoğraf orada duruyor değiştirmediğiniz sürece).
 - 3 adet BoardingScreen ve sadece ilk çalıştırıldığında geliyor.
 - SplashScreen(Assets json dan okuyor).
