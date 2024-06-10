@@ -120,172 +120,174 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                SizedBox(height: 25),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CircleAvatar(
-                    backgroundImage: currentAvatar,
-                    radius: 40,
+        child: SingleChildScrollView(
+          child: Container(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  SizedBox(height: 25),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CircleAvatar(
+                      backgroundImage: currentAvatar,
+                      radius: 40,
+                    ),
                   ),
-                ),
-                OutlinedButton(
-                  onPressed: ppUpdate,
-                  child: const Text("Change Profile Photo"),
-                ),
-                Text(
-                  "Carla Willis",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
+                  OutlinedButton(
+                    onPressed: ppUpdate,
+                    child: const Text("Change Profile Photo"),
                   ),
-                ),
-                Gap(10),
-                Text(
-                  "carlawillis@gmail.com",
-                  style: TextStyle(
-                    color: Color.fromRGBO(128, 128, 128, 1),
-                    fontSize: 14,
+                  Text(
+                    "Carla Willis",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () => GoRouter.of(context).push("/login"),
-                  child: Text(
-                    "Logout",
-                    style: TextStyle(color: Colors.white),
+                  Gap(10),
+                  Text(
+                    "carlawillis@gmail.com",
+                    style: TextStyle(
+                      color: Color.fromRGBO(128, 128, 128, 1),
+                      fontSize: 14,
+                    ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 115, 102),
+                  SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () => GoRouter.of(context).push("/login"),
+                    child: Text(
+                      "Logout",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 255, 115, 102),
+                    ),
                   ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 40),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 40),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'My Orders',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              ">",
+                              style: TextStyle(
+                                color: Color.fromRGBO(128, 128, 128, 1),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(),
+                      SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Messages',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              ">",
+                              style: TextStyle(
+                                color: Color.fromRGBO(128, 128, 128, 1),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(),
+                      SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Payment Methods',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              ">",
+                              style: TextStyle(
+                                color: Color.fromRGBO(128, 128, 128, 1),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(),
+                      SizedBox(height: 10),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'My Orders',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            ">",
-                            style: TextStyle(
-                              color: Color.fromRGBO(128, 128, 128, 1),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Messages',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            ">",
-                            style: TextStyle(
-                              color: Color.fromRGBO(128, 128, 128, 1),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Payment Methods',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            ">",
-                            style: TextStyle(
-                              color: Color.fromRGBO(128, 128, 128, 1),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              "/home",
-                              (Route<dynamic> route) => false,
-                            );
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(width: 8),
-                              InkWell(
-                                onTap: () {
-                                  GoRouter.of(context).push("/home");
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(1.0),
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(2.0),
-                                        child: Text(
-                                          "Settings",
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                "/home",
+                                (Route<dynamic> route) => false,
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(width: 8),
+                                InkWell(
+                                  onTap: () {
+                                    GoRouter.of(context).push("/home");
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(1.0),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(2.0),
+                                          child: Text(
+                                            "Settings",
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        Text(
-                          ">",
-                          style: TextStyle(
-                              color: Color.fromRGBO(128, 128, 128, 1)),
-                        ),
-                      ],
-                    ),
-                    Divider(),
-                  ],
-                )
-              ],
+                          Text(
+                            ">",
+                            style: TextStyle(
+                                color: Color.fromRGBO(128, 128, 128, 1)),
+                          ),
+                        ],
+                      ),
+                      Divider(),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

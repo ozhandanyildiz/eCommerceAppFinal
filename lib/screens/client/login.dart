@@ -19,14 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 60.0),
-                  child: CircleAvatar(
-                    radius: 50,
-                    backgroundImage: NetworkImage(
-                        'https://png.pngtree.com/png-vector/20191103/ourmid/pngtree-handsome-young-guy-avatar-cartoon-style-png-image_1947775.jpg'),
-                  ),
-                ),
                 SizedBox(width: 10),
                 InkWell(
                   onTap: () {
